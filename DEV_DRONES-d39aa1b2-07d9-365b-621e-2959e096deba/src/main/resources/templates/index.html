@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Cicosy FavIcon -->
+    <link rel="icon" href="img/cicosy_favicon.ico" image="image/gif" size="16x16">
+
+    <!-- Font Awesome CSS CDN -->
+
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"/>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Drawer CSS File -->
+    <link rel="stylesheet" href="css/bootstrap-drawer.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+    <title>Drone System</title>
+</head>
+
+<body onload="loadDronesIndex()">
+<!-- Navbar Starts -->
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <!-- Drawer Start -->
+    <button class="btn btn-outline-light" data-toggle="drawer" data-target="#Drawer">
+        <i class="fas fa-sliders-h"></i>
+    </button>
+
+    <div class="drawer drawer-left slide" tabindex="-1" role="dialog" aria-labelledby="drawer-demo-title"
+         aria-hidden="true" id="Drawer">
+        <div class="drawer-content drawer-content-scrollable" role="document">
+            <div class="drawer-header bg-dark text-white">
+                <h4 class="drawer-title mx-auto" id="drawer-demo-title">
+                    <i class="fas fa-user-circle"></i>
+                    Welcome, Guest
+                </h4>
+            </div>
+            <div class="drawer-body">
+                <a href="/" class="btn btn-warning my-2  btn-sm">Home</a>
+                <hr/>
+                <h6 class="text-muted text-uppercase">Drone Menu</h6>
+                <a href="/new-drone" class="btn btn-outline-success my-2 btn-sm">Add Drone</a>
+                <a href="/new-medicine" class="btn btn-outline-success my-2 btn-sm">Add Medicine</a>
+
+                <hr/>
+
+                <a href="/drones" class="btn btn-outline-success my-2 btn-sm">Tabular View</a>
+
+
+            </div>
+            <div class="drawer-footer">
+                <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="drawer" aria-label="Close">
+                    <i class="fas fa-2x fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </div> <!-- Drawer Ends -->
+
+    <a class="navbar-brand pl-2" href="/">
+        <img src="img/cicosy_logo_white.png" height="30" width="100" alt="cicosy logo white">
+        Drone System
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Search Bar Starts -->
+        <form class="form-inline px-lg-5" novalidate method="get">
+
+            <div class="input-group">
+
+
+                <div class="  col-sm-12 col-md-4 input-group-prepend">
+                    <h5 style="color: white"> Show </h5>
+                    <span style="width: 20px"></span>
+                    <div class="dropdown">
+
+                        <button class="btn btn-secondary dropdown-toggle" name="btnCategory" type="button"
+                                id="btnCategoryDropdownMenu" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                            All
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnCategoryDropdownMenu">
+                            <a class="dropdown-item" href="#">All</a>
+                            <a class="dropdown-item" href="#">IDLE</a>
+                            <a class="dropdown-item" href="#">LOADING</a>
+                            <a class="dropdown-item" href="#">LOADED</a>
+                            <a class="dropdown-item" href="#">DELIVERING</a>
+                            <a class="dropdown-item" href="#">RETURNING</a>
+                        </div>
+                    </div>
+
+                    <span style="width: 20px"></span>
+                    <h5 style="color: white"> Drones</h5>
+                </div>
+
+                <span style="width: 3rem"></span>
+                <div class=" col-lg-3 col-sm-12 col-md-4 input-group-prepend">
+
+                    <input type="text" class="form-control" size="50" name="query" id="query">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-warning">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form> <!-- Search Bar Ends -->
+        <ul class="navbar-nav">
+            <!-- Preffered Language Starts -->
+            <li class="nav-item dropdown px-2">
+                <a class="nav-link" href="#" id="prefLanguageDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-2x fa-language"></i>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="prefLanguageDropdown">
+                    <form class="p-3">
+                        <div class="dropdown-divider"></div>
+                        <div class="custom-control custom-radio mb-2">
+                            <input class="custom-control-input" type="radio" name="prefLang" id="englishLang"
+                                   value="english"
+                                   checked>
+                            <label class="custom-control-label" for="englishLang">
+                                <img src="img/flag/americanflag.jpg" alt="uk flag" width="50" height="30">
+                            </label>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="custom-control custom-radio mb-2">
+                            <input class="custom-control-input" type="radio" name="prefLang" id="hindiLang"
+                                   value="hindi" checked>
+                            <label class="custom-control-label" for="hindiLang">
+                                <img src="img/flag/hindi.svg" alt="uk flag" width="50" height="30">
+                            </label>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="custom-control custom-radio mb-2">
+                            <input class="custom-control-input" type="radio" name="prefLang" id="urduLang" value="urdu"
+                                   checked>
+                            <label class="custom-control-label" for="urduLang">
+                                <img src="img/flag/urdu.svg" alt="uk flag" width="50" height="30">
+                            </label>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="custom-control custom-radio">
+                            <input class="custom-control-input" type="radio" name="prefLang" id="banglaLang"
+                                   value="bangla" checked>
+                            <label class="custom-control-label" for="banglaLang">
+                                <img src="img/flag/zimbabwe.jpg" alt="uk flag" width="50" height="30">
+                            </label>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                    </form>
+                </div>
+            </li> <!-- Preffered Language Ends -->
+
+        </ul>
+    </div>
+</nav> <!-- Navbar Ends -->
+
+
+<div class="container-fluid px-0">
+
+    <!-- Image Slider Starts -->
+    <div id="cicosyImageSlider" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <a href="#"><img src="img/slider/drone1.jpg" class="d-block w-100" height="500"
+                                 alt="slide image 01"></a>
+            </div>
+            <div class="carousel-item">
+                <a href="#"><img src="img/slider/drone2.jpg" class="d-block w-100" height="500"
+                                 alt="slide image 02"></a>
+            </div>
+            <div class="carousel-item">
+                <a href="#"><img src="img/slider/drone3.jpg" class="d-block w-100" height="500"
+                                 alt="slide image 03"></a>
+            </div>
+            <div class="carousel-item ">
+                <a href="#"><img src="img/slider/drone4.jpg" class="d-block w-100" height="500"
+                                 alt="slide image 04"></a>
+            </div>
+            <div class="carousel-item">
+                <a href="#"><img src="img/slider/drone5.jpg" class="d-block w-100" height="500"
+                                 alt="slide image 05"></a>
+            </div>
+            <div class="carousel-item">
+                <a href="#"><img src="img/slider/drone6.jpg" class="d-block w-100" height="500"
+                                 alt="slide image 06"></a>
+            </div>
+            <div class="carousel-item">
+                <a href="#"><img src="img/slider/drone7.jpg" class="d-block w-100" height="500"
+                                 alt="slide image 07"></a>
+            </div>
+            <div class="carousel-item">
+                <a href="#"><img src="img/slider/drone8.jpg" class="d-block w-100" height="500"
+                                 alt="slide image 08"></a>
+            </div>
+            <div class="carousel-item">
+                <a href="#"><img src="img/slider/drone9.jpg" class="d-block w-100" height="500"
+                                 alt="slide image 09"></a>
+            </div>
+            <div class="carousel-item">
+                <a href="#"><img src="img/slider/drone10.jpg" class="d-block w-100" height="500"
+                                 alt="slide image 10"></a>
+            </div>
+
+        </div>
+        <a class="carousel-control-prev" href="#cicosyImageSlider" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#cicosyImageSlider" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div> <!-- Image Slider Ends -->
+
+
+    <div class="container mb-5" style="margin-top: -200px;">
+
+
+        <!-- Prouct Row Starts -->
+        <div class="row" id="allDrones">
+
+        </div> <!-- Prouct Row Ends -->
+
+        <!--         Prouct Row Starts-->
+        <!--              <div class="row mt-md-4 mt-0 " id="allProducts2">-->
+        <!--                <div class="col-lg-3">-->
+        <!--                  <div class="card my-2 my-lg-0">-->
+        <!--                    <div class="card-body d-flex justify-content-center">-->
+        <!--                      <a href="#"><img src="img/product_images/product02.png" alt="product image 01" class="img-fluid"></a>-->
+        <!--                    </div>-->
+        <!--                    <div class="card-footer bg-transparent py-0">-->
+        <!--                      <div class="row my-1">-->
+        <!--                        <div class="col-md-6">-->
+        <!--                          <p class="font-weight-bold text-danger">-->
+        <!--                            <i class="fas fa-dollar-sign"></i> 150.00-->
+        <!--                          </p>-->
+        <!--                        </div>-->
+        <!--                        <div class="col-md-6">-->
+        <!--                          <a href="#" class="btn btn-success btn-sm btn-block">Buy</a>-->
+        <!--                        </div>-->
+        <!--                      </div>-->
+        <!--                    </div>-->
+        <!--                  </div>-->
+        <!--                </div>-->
+
+        <!--                <div class="col-lg-3">-->
+        <!--                  <div class="card my-2 my-lg-0">-->
+        <!--                    <div class="card-body d-flex justify-content-center">-->
+        <!--                      <a href="#"><img src="img/product_images/product03.png" alt="product image 01" class="img-fluid"></a>-->
+        <!--                    </div>-->
+        <!--                    <div class="card-footer bg-transparent py-0">-->
+        <!--                      <div class="row my-1">-->
+        <!--                        <div class="col-md-6">-->
+        <!--                          <p class="font-weight-bold text-danger">-->
+        <!--                            <i class="fas fa-dollar-sign"></i> 650.00-->
+        <!--                          </p>-->
+        <!--                        </div>-->
+        <!--                        <div class="col-md-6">-->
+        <!--                          <a href="#" class="btn btn-success btn-sm btn-block">Buy</a>-->
+        <!--                        </div>-->
+        <!--                      </div>-->
+        <!--                    </div>-->
+        <!--                  </div>-->
+        <!--                </div>-->
+
+        <!--                <div class="col-lg-3">-->
+        <!--                  <div class="card my-2 my-lg-0">-->
+        <!--                    <div class="card-body d-flex justify-content-center">-->
+        <!--                      <a href="#"><img src="img/product_images/product03.png" alt="product image 01" class="img-fluid"></a>-->
+        <!--                    </div>-->
+        <!--                    <div class="card-footer bg-transparent py-0">-->
+        <!--                      <div class="row my-1">-->
+        <!--                        <div class="col-md-6">-->
+        <!--                          <p class="font-weight-bold text-danger">-->
+        <!--                            <i class="fas fa-dollar-sign"></i> 550.00-->
+        <!--                          </p>-->
+        <!--                        </div>-->
+        <!--                        <div class="col-md-6">-->
+        <!--                          <a href="#" class="btn btn-success btn-sm btn-block">Buy</a>-->
+        <!--                        </div>-->
+        <!--                      </div>-->
+        <!--                    </div>-->
+        <!--                  </div>-->
+        <!--                </div>-->
+
+        <!--                <div class="col-lg-3">-->
+        <!--                  <div class="card my-2 my-lg-0">-->
+        <!--                    <div class="card-body d-flex justify-content-center">-->
+        <!--                      <a href="#"><img src="img/product_images/product02.png" alt="product image 01" class="img-fluid"></a>-->
+        <!--                    </div>-->
+        <!--                    <div class="card-footer bg-transparent py-0">-->
+        <!--                      <div class="row my-1">-->
+        <!--                        <div class="col-md-6">-->
+        <!--                          <p class="font-weight-bold text-danger">-->
+        <!--                            <i class="fas fa-dollar-sign"></i> 750.00-->
+        <!--                          </p>-->
+        <!--                        </div>-->
+        <!--                        <div class="col-md-6">-->
+        <!--                          <a href="#" class="btn btn-success btn-sm btn-block">Buy</a>-->
+        <!--                        </div>-->
+        <!--                      </div>-->
+        <!--                    </div>-->
+        <!--                  </div>-->
+        <!--                </div>-->
+        <!--              </div> &lt;!&ndash; Prouct Row Ends &ndash;&gt;-->
+        <!--          -->
+
+    </div>
+
+</div>
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="js/jquery.min.js"></script>
+<!--  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>-->
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<!-- Drawer JS File -->
+<script src="js/bootstrap-drawer.min.js"></script>
+<!-- Custom JavaScript -->
+<script src="js/custom.js"></script>
+</body>
+
+</html>

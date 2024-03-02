@@ -1,0 +1,326 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Cicosy FavIcon -->
+    <link rel="icon" href="img/cicosy_favicon.ico" image="image/gif" size="16x16">
+    <!-- Bootstrap CSS
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous"> -->
+
+    <!-- Font Awesome CSS CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
+          integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
+          crossorigin="anonymous"/>
+    <!-- Bootstrap CSS Local -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Drawer CSS File -->
+    <link rel="stylesheet" href="css/bootstrap-drawer.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+    <title>Load Drone</title>
+</head>
+
+<body onload="getDrone() ;">
+<!-- Navbar Starts -->
+<nav class="navbar navbar-expand-md navbar-dark bg-dark">
+    <!-- Drawer Start -->
+    <button class="btn btn-outline-light" data-toggle="drawer" data-target="#Drawer">
+        <i class="fas fa-sliders-h"></i>
+    </button>
+
+    <div class="drawer drawer-left slide" tabindex="-1" role="dialog" aria-labelledby="drawer-demo-title"
+         aria-hidden="true" id="Drawer">
+        <div class="drawer-content drawer-content-scrollable" role="document">
+            <div class="drawer-header bg-dark text-white">
+                <h4 class="drawer-title mx-auto" id="drawer-demo-title">
+                    <i class="fas fa-user-circle"></i>
+                    Welcome, Guest
+                </h4>
+            </div>
+            <div class="drawer-body">
+                <a href="/" class="btn btn-warning my-2  btn-sm">Home</a>
+                <hr/>
+                <h6 class="text-muted text-uppercase">Drone Menu</h6>
+                <a href="/new-drone" class="btn btn-outline-success my-2 btn-sm">Add Drone</a>
+                <a href="/new-medicine" class="btn btn-outline-success my-2 btn-sm">Add Medicine</a>
+
+                <hr/>
+
+                <a href="/drones" class="btn btn-outline-success my-2 btn-sm">Tabular View</a>
+
+
+            </div>
+            <div class="drawer-footer">
+                <button type="button" class="btn btn-outline-danger btn-sm" data-dismiss="drawer" aria-label="Close">
+                    <i class="fas fa-2x fa-times"></i>
+                </button>
+            </div>
+        </div>
+    </div> <!-- Drawer Ends -->
+
+    <a class="navbar-brand pl-2" href="/">
+        <img src="img/cicosy_logo_white.png" height="30" width="100" alt="cicosy logo white">
+        Drone System
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <!-- Search Bar Starts -->
+        <form class="form-inline px-lg-5" novalidate method="get">
+
+            <div class="input-group">
+
+
+                <div class="  col-sm-12 col-md-4 input-group-prepend">
+                    <h5 style="color: white"> Show </h5>
+                    <span style="width: 20px"></span>
+                    <div class="dropdown">
+
+                        <button class="btn btn-secondary dropdown-toggle" name="btnCategory" type="button"
+                                id="btnCategoryDropdownMenu" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
+                            All
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="btnCategoryDropdownMenu">
+                            <a class="dropdown-item" href="#">All</a>
+                            <a class="dropdown-item" href="#">IDLE</a>
+                            <a class="dropdown-item" href="#">LOADING</a>
+                            <a class="dropdown-item" href="#">LOADED</a>
+                            <a class="dropdown-item" href="#">DELIVERING</a>
+                            <a class="dropdown-item" href="#">RETURNING</a>
+                        </div>
+                    </div>
+
+                    <span style="width: 20px"></span>
+                    <h5 style="color: white"> Drones</h5>
+                </div>
+
+                <span style="width: 3rem"></span>
+                <div class=" col-lg-3 col-sm-12 col-md-4 input-group-prepend">
+
+                    <input type="text" class="form-control" size="50" name="query" id="query">
+                    <div class="input-group-append">
+                        <button type="submit" class="btn btn-warning">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </form> <!-- Search Bar Ends -->
+        <ul class="navbar-nav">
+            <!-- Preffered Language Starts -->
+            <li class="nav-item dropdown px-2">
+                <a class="nav-link" href="#" id="prefLanguageDropdown" role="button" data-toggle="dropdown"
+                   aria-haspopup="true" aria-expanded="false">
+                    <i class="fas fa-2x fa-language"></i>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="prefLanguageDropdown">
+                    <form class="p-3">
+                        <div class="dropdown-divider"></div>
+                        <div class="custom-control custom-radio mb-2">
+                            <input class="custom-control-input" type="radio" name="prefLang" id="englishLang"
+                                   value="english"
+                                   checked>
+                            <label class="custom-control-label" for="englishLang">
+                                <img src="img/flag/americanflag.jpg" alt="uk flag" width="50" height="30">
+                            </label>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="custom-control custom-radio mb-2">
+                            <input class="custom-control-input" type="radio" name="prefLang" id="hindiLang"
+                                   value="hindi" checked>
+                            <label class="custom-control-label" for="hindiLang">
+                                <img src="img/flag/hindi.svg" alt="uk flag" width="50" height="30">
+                            </label>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="custom-control custom-radio mb-2">
+                            <input class="custom-control-input" type="radio" name="prefLang" id="urduLang" value="urdu"
+                                   checked>
+                            <label class="custom-control-label" for="urduLang">
+                                <img src="img/flag/urdu.svg" alt="uk flag" width="50" height="30">
+                            </label>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                        <div class="custom-control custom-radio">
+                            <input class="custom-control-input" type="radio" name="prefLang" id="banglaLang"
+                                   value="bangla" checked>
+                            <label class="custom-control-label" for="banglaLang">
+                                <img src="img/flag/zimbabwe.jpg" alt="uk flag" width="50" height="30">
+                            </label>
+                        </div>
+                        <div class="dropdown-divider"></div>
+                    </form>
+                </div>
+            </li> <!-- Preffered Language Ends -->
+
+        </ul>
+    </div>
+</nav> <!-- Navbar Ends -->
+
+<!-- Review Order Starts -->
+<div class="container my-5">
+
+    <!-- Progress Status -->
+    <div class="d-flex flex-column">
+        <!-- Cart Movement -->
+        <div class="d-flex flex-row text-uppercase justify-content-around" style="font-size: 12px;">
+            <p class="mb-0 pb-0"><i class="fas fa-check fa-3x text-success"></i></p>
+
+            <p class="mb-0 pb-0"><i class="fas fa-plus-square fa-3x text-success"></i></p>
+
+            <p class="mb-0 pb-0"><i class="fas fa-plane-departure fa-3x text-warning"></i></p>
+            <p class="mb-0 pb-0"><i class="fas fa-check fa-3x text-warning"></i></p>
+        </div>
+
+        <!-- Progress bar starts -->
+        <div class="progress" style="height: 5px;">
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                 style="width: 25%; background-color: #e47911;"></div>
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                 style="width: 10%; background-color: #e47911;"></div>
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                 style="width: 12.5%;  background-color: #e9ecef"></div>
+            <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar"
+                 style="width: 0%; background-color: #e9ecef"></div>
+        </div>
+
+        <div class="d-flex flex-row text-uppercase justify-content-around" style="font-size: 12px;">
+            <p>Select Drone</p>
+            <p>Load Medicine</p>
+            <p class="font-weight-bold">Delivery In Transit</p>
+            <p class="text-muted">Completed</p>
+        </div>
+    </div> <!-- Progress Status ends -->
+
+    <h3>Load Medicine</h3>
+    <p>Add medicine to the drone , NB <small class="text-muted font-weight-bold"> Medicine Total weight should not
+        exceed Drone Weight Limit and Battery Level should be above 25%</small>
+    </p>
+    <div class="dropdown-divider"></div>
+
+
+    <div class="row">
+        <!-- Product details -->
+        <div class="col-md-8">
+            <!-- Address & Payment Detail -->
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12">
+                                    <h4 style="text-align: center">Drone Details</h4>
+                                </div>
+                            </div>
+                            <div class="row" id="DroneData">
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- Address & Payment Detail ends -->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="card mt-3">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <h4 style="text-align: center">Add Medicines</h4>
+                                </div>
+                                <div class="col-6">
+                                    <div class="input-group">
+                                        <select class="custom-select" id="medicineSelectioninput"
+                                                aria-label="Example select with button addon">
+
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div>
+                <!-- Two Medicine Order Detail Card -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="card mt-3">
+                            <div class="card-body">
+                                <div class="row" id="medicinies">
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!-- Single Order Detail Card ends -->
+
+
+            </div>
+
+
+        </div> <!-- Drone Medicines details ends -->
+
+
+        <div class="col-md-4">
+            <div class="card mt-md-0 mt-3">
+                <div class="card-body">
+                    <button class="btn btn-sm btn-warning btn-block text-capitalize" disabled>Delivery Details</button>
+                    <p class="text-muted mt-2">After selecting the medicines you want to load to your drone , you can
+                        proceed </p>
+                    <p class="my-1">Medicine Summary</p>
+                    <p style="font-size: 15px;" class="my-0">Medicines:
+                        <span class="float-right" id="totalMedicines">0</span>
+                    </p>
+                    <p style="font-size: 15px;" class="my-0">Items:
+                        <span class="float-right" id="totalItems">0</span>
+                    </p>
+
+                    <div class="dropdown-divider"></div>
+                    <p class="my-0 text-danger font-weight-bold">Total Weight:
+                        <span class="float-right" id="totalWeight">0g</span>
+                    </p>
+
+
+                </div> <!-- Card body ends -->
+
+                <div class="card-footer">
+                    <p>Once you add successfully , your drone will become in transit</p>
+                    <p></p>
+                    <button class="btn btn-success btn-sm btn-block" onclick="updateDroneSavingCarriedMedicine()">Proceed</button>
+                </div>
+            </div>
+        </div> <!-- Place your order & pay ends -->
+    </div>
+
+</div> <!-- Review Order Ends -->
+
+
+<script src="js/jquery.min.js"></script>
+<script src="js/custom.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
+<!-- Drawer JS File -->
+<script src="js/bootstrap-drawer.min.js"></script>
+<!-- Custom JavaScript -->
+
+</body>
+
+</html>
