@@ -34,10 +34,10 @@ Below are the requirements for the project
 
 ---
 
-#### VIDEO DEMO
+<!-- #### VIDEO DEMO
 
 [![Watch the video](drone3.jpg)](https://youtu.be/D9psSLdOEj4)
-
+-->
 
 ---
 
@@ -53,9 +53,10 @@ Below are the requirements for the project
 
 ---
 
-### Importing the database : Video
+<!-- ### Importing the database : Video
 
 [![Watch the video](drone3.jpg)](https://youtu.be/zZ8Gxgz3Ttw)
+-->
 
 ### What you will learn from this project
 
